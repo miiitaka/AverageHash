@@ -1,0 +1,2 @@
+# AverageHash
+Average Hash
