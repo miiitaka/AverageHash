@@ -3,7 +3,7 @@ class AverageHash {
 	/*
 	 * Image Size
 	 */
-	const SIZE = 8;
+	const SIZE = 16;
 
 	/*
 	 * Constructor
@@ -33,18 +33,27 @@ class AverageHash {
 
 		$average = floor( array_sum( $pixels ) / count( $pixels ) );
 
-		$hash = 0;
-		$one  = 1;
+		$hash  = 0;
+		$shift = 1;
+		$count = 1;
 
 		foreach ( $pixels as $value ) {
-			if ( $value > $average) {
-				$hash |= $one;
+			if ( $value > $average ) {
+				$hash = $hash | $shift;
+				echo 1;
+			} else {
+				echo 0;
 			}
-			$one = $one << 1;
+			$shift = $shift << 1;
+
+			if ( $count % static::SIZE == 0 ) {
+				echo '<br>';
+			}
+			$count++;
 		}
-		var_dump( $pixels );
+		return $hash;
 	}
 }
 
-$hash = new AverageHash();
-$hash->hash( 'lenna.png' );
+$hash  = new AverageHash();
+$hash1 = $hash->hash( 'lenna.png' );
