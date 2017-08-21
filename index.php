@@ -1,4 +1,8 @@
 <?php
+/*
+ * Average Hash
+ *
+ */
 class AverageHash {
 	/*
 	 * Image Size
@@ -13,18 +17,18 @@ class AverageHash {
 	}
 
 	/*
-	 * Hash preprocess
+	 * Hash process
 	 *
 	 * @param string $resource
 	 */
 	public function hash( $resource ) {
-		$resize = imagecreatetruecolor( static::SIZE, static::SIZE );
+		$resize = imagecreatetruecolor( self::SIZE, self::SIZE );
 		$image  = imagecreatefromstring( file_get_contents( $resource ) );
-		imagecopyresampled( $resize, $image, 0, 0, 0, 0, static::SIZE, static::SIZE, imagesx( $image ), imagesy( $image ) );
+		imagecopyresampled( $resize, $image, 0, 0, 0, 0, self::SIZE, self::SIZE, imagesx( $image ), imagesy( $image ) );
 
 		$pixels = [];
-		for ( $y = 0; $y < static::SIZE; $y++ ) {
-			for ( $x = 0; $x < static::SIZE; $x++ ) {
+		for ( $y = 0; $y < self::SIZE; $y++ ) {
+			for ( $x = 0; $x < self::SIZE; $x++ ) {
 				$rgb = imagecolorsforindex( $resize, imagecolorat( $resize, $x, $y ) );
 				$pixels[] = floor( ( $rgb['red'] + $rgb['green'] + $rgb['blue'] ) / 3 );
 			}
@@ -46,7 +50,7 @@ class AverageHash {
 			}
 			$shift = $shift << 1;
 
-			if ( $count % static::SIZE == 0 ) {
+			if ( $count % self::SIZE == 0 ) {
 				echo '<br>';
 			}
 			$count++;
