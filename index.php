@@ -1,7 +1,6 @@
 <?php
 /*
  * Average Hash
- *
  */
 class AverageHash {
 	/*
@@ -44,9 +43,9 @@ class AverageHash {
 		foreach ( $pixels as $value ) {
 			if ( $value > $average ) {
 				$hash = $hash | $shift;
-				echo 1;
+				echo '<span style="width:20px;height:20px;display:inline-block;">1</span>';
 			} else {
-				echo 0;
+				echo '<span style="width:20px;height:20px;display:inline-block;">0</span>';
 			}
 			$shift = $shift << 1;
 
@@ -60,4 +59,4 @@ class AverageHash {
 }
 
 $hash  = new AverageHash();
-$hash1 = $hash->hash( 'lenna.png' );
+$hash1 = $hash->hash( 'blackstar.jpg' );
