@@ -9,13 +9,6 @@ class AverageHash {
 	const SIZE = 16;
 
 	/*
-	 * Constructor
-	 */
-	public function __constructor() {
-
-	}
-
-	/*
 	 * Hash process
 	 *
 	 * @param string $resource
